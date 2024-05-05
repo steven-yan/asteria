@@ -30,3 +30,7 @@ func (formatter JSONWithTimeFormatter) Format(f event.Event) string {
 
 	return fmt.Sprintf("[%s] %s", datetime, string(res))
 }
+
+func (formatter JSONWithTimeFormatter) FormatIndent(f event.Event, prefix, indent string) string {
+	return formatter.Format(f)
+}

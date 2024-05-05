@@ -378,7 +378,7 @@ func (module *AsteriaLogger) Output(callDepth int, le level.Level, userContext F
 	}
 
 	var chain filter.Filter = func(f event.Event) {
-		message := module.getFormatter().Format(f)
+		message := module.getFormatter().FormatIndent(f, "", "    ")
 		if err := module.getWriter().Write(le, f.Module, message); err != nil {
 			panic(fmt.Sprintf("can not write to output: %s", err))
 		}

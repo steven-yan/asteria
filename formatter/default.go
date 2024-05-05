@@ -66,6 +66,10 @@ func (formatter DefaultFormatter) Format(f event.Event) string {
 	return strings.Trim(strings.Replace(message, "\n", "\n	", -1), "\n	")
 }
 
+func (formatter DefaultFormatter) FormatIndent(f event.Event, prefix, indent string) string {
+	return formatter.Format(f)
+}
+
 // StripCtlAndExtFromUnicode Advanced Unicode normalization and filtering,
 // see http://blog.golang.org/normalization and
 // http://godoc.org/golang.org/x/text/unicode/norm for more
