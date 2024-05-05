@@ -43,3 +43,19 @@ func (formatter JSONFormatter) Format(f event.Event) string {
 
 	return string(res)
 }
+
+// FormatIndent 日志格式化并对齐
+func (formatter JSONFormatter) FormatIndent(f event.Event, prefix, indent string) string {
+	datetime := f.Time.Format(time.RFC3339)
+
+	res, _ := json.MarshalIndent(jsonOutput{
+		DateTime:   datetime,
+		Message:    fmt.Sprint(f.Messages...),
+		Level:      f.Level,
+		ModuleName: f.Module,
+		LevelName:  f.Level.GetLevelName(),
+		Context:    f.Fields.ToMap(),
+	}, prefix, indent)
+
+	return string(res)
+}
