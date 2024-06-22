@@ -19,6 +19,17 @@ var levelColorRef = map[level.Level][]color.Color{
 	level.Emergency: {color.LightWhite, color.LightRed},
 }
 
+var csLevelColorRef = map[level.Level][]color.Color{
+	level.Debug:     {color.Blue, color.LightGrey},
+	level.Info:      {color.Cyan, color.LightGrey},
+	level.Notice:    {color.Yellow, color.LightGrey},
+	level.Warning:   {color.Yellow, color.LightWhite},
+	level.Error:     {color.Red, color.LightWhite},
+	level.Critical:  {color.Red, color.LightWhite},
+	level.Alert:     {color.Red, color.LightWhite},
+	level.Emergency: {color.Red, color.LightWhite},
+}
+
 var levelColorRefLock sync.RWMutex
 
 func ColorfulLevelName(le level.Level) string {
@@ -27,7 +38,7 @@ func ColorfulLevelName(le level.Level) string {
 
 	levelName := fmt.Sprintf("[%s]", le.GetLevelNameAbbreviation())
 
-	if lc, ok := levelColorRef[le]; ok {
+	if lc, ok := csLevelColorRef[le]; ok {
 		return color.BackgroundFunc(lc[0], lc[1])(levelName)
 	}
 
@@ -39,5 +50,5 @@ func SetLevelWithColor(le level.Level, textColor color.Color, backgroundColor co
 	levelColorRefLock.Lock()
 	defer levelColorRefLock.Unlock()
 
-	levelColorRef[le] = []color.Color{textColor, backgroundColor}
+	csLevelColorRef[le] = []color.Color{textColor, backgroundColor}
 }

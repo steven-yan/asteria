@@ -23,7 +23,7 @@ type Event struct {
 }
 
 func (f Fields) String(excludes ...string) string {
-	encoded, _ := json.Marshal(f.ToMap(excludes...))
+	encoded, _ := json.MarshalIndent(f.ToMap(excludes...), "", "    ")
 	return string(encoded)
 }
 

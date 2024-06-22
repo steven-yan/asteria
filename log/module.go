@@ -393,22 +393,23 @@ func (module *AsteriaLogger) Output(callDepth int, le level.Level, userContext F
 	chain(f)
 
 	// steven
-	func() {
-		if le <= level.Error {
-			logLine := func(format string, a ...any) {
-				println(fmt.Sprintf(format, a))
-			}
-			borderFmt := "***************************************************************************** %s %s *****************************************************************************"
-			logLine(borderFmt, le.GetLevelName(), "Start")
-			cg := misc.CallGraph(callDepth)
-			logLine("PackageName %s", cg.PackageName)
-			logLine("File:Line %s:%s", cg.FileName, cg.Line)
-			for key, value := range userContext {
-				logLine("%s: %s", key, value)
-			}
-			logLine(borderFmt, le.GetLevelName(), "End")
-		}
-	}()
+	//func() {
+	//	if le <= level.Error {
+	//		logLine := func(format string, a ...any) {
+	//			print(fmt.Sprintf(format, a...))
+	//			print("\n")
+	//		}
+	//		borderFmt := "***************************************************************************** %s %s *****************************************************************************"
+	//		logLine(borderFmt, le.GetLevelName(), "Start")
+	//		cg := misc.CallGraph(callDepth)
+	//		logLine("PackageName: %s", cg.PackageName)
+	//		logLine("File:Line %s:%d", cg.FileName, cg.Line)
+	//		for key, value := range userContext {
+	//			logLine("%s: %s", key, value)
+	//		}
+	//		logLine(borderFmt, le.GetLevelName(), "End")
+	//	}
+	//}()
 }
 
 // Default 获取默认的模块日志
