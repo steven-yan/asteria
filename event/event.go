@@ -23,8 +23,14 @@ type Event struct {
 }
 
 func (f Fields) String(excludes ...string) string {
-	encoded, _ := json.MarshalIndent(f.ToMap(excludes...), "", "    ")
-	return string(encoded)
+	values := f.ToMap(excludes...)
+	if len(values) <= 0 {
+		encoded, _ := json.Marshal(f.ToMap(excludes...))
+		return string(encoded)
+	} else {
+		encoded, _ := json.MarshalIndent(f.ToMap(excludes...), "", "    ")
+		return string(encoded)
+	}
 }
 
 func (f Fields) ToMap(excludes ...string) map[string]interface{} {

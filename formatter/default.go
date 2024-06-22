@@ -45,7 +45,7 @@ func (formatter DefaultFormatter) Format(f event.Event) string {
 			misc.ColorfulLevelName(f.Level),
 			misc.ModuleNameAbbr(f.Module),
 			messageBody,
-			color.TextWrap(color.Cyan, f.Fields.String("stacktrace")),
+			color.TextWrap(color.Blue, f.Fields.String("stacktrace")),
 		)
 	} else {
 		message = fmt.Sprintf(

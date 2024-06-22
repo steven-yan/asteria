@@ -8,8 +8,8 @@ import (
 
 func main() {
 	log.AddGlobalFilter(filter.WithStacktrace(level.Error))
-	//log.Debug("Hello, world")
-	//log.Warning("Hello, world")
+	log.Debug("Hello, world")
+	log.Warning("Hello, world")
 	//log.F(log.M{
 	//	"key": "value",
 	//}).Errorf("oops")
