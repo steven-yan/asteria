@@ -27,6 +27,7 @@ func (f Fields) String(excludes ...string) string {
 	if len(values) <= 0 {
 		return ""
 	}
+
 	encoded, _ := json.MarshalIndent(f.ToMap(excludes...), "", "    ")
 	return string(encoded)
 }
